@@ -9,8 +9,8 @@ Convert Smithy JSON files into Clojure specs.
 => nil
 
 (smithy-spec/->specs {::api-input ec2-input}
-  {::input-shape "TagList"
-   ::base-ns     "aws.ec2"})
+  {::smithy-spec/input-shape "TagList"
+   ::smithy-spec/base-ns     "aws.ec2"})
 =>
 ((clojure.spec.alpha/def :aws.ec2/TagList (clojure.spec.alpha/coll-of :aws.ec2.TagList/Tag))
  (clojure.spec.alpha/def :aws.ec2.TagList/Key clojure.core/string?)
