@@ -38,6 +38,10 @@
 
   )
 
+(defn list-shape-names
+  [input]
+  (-> (::api-input input) (get "shapes") keys sort))
+
 (defn- length-trait?
   [m]
   (or (m "min") (m "max")))
@@ -150,6 +154,7 @@
 
   (def shape-name (get-in ec2-input ["operations" "DescribeInstances" "output" "shape"]))
   (def shape-name (get-in ec2-input ["shapes" "Instance"]))
+  (list-shape-names ec2-input)
 
 
   (require
