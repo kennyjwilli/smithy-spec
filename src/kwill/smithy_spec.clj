@@ -152,12 +152,19 @@
   (def shape-name (get-in ec2-input ["shapes" "Instance"]))
 
 
-  (require 'kwill.smithy-spec.download)
+  (require
+    'kwill.smithy-spec.download
+    'kwill.smithy-spec.write)
   (def ec2-input (kwill.smithy-spec.download/get-input! {:api "ec2" :version "2016-11-15"}))
 
   (def ss (->specs ec2-input
             {::input-shape "Instance"
              ::base-ns     "aws.ec2"}))
+
+  (kwill.smithy-spec.write/write-to-file! ss
+    {:kwill.smithy-spec.write/ns-sym 'ec2
+     :kwill.smithy-spec.write/file   "local/ec2.clj"})
+
   (first ss)
   (eval (cons `do (seq ss)))
   (s/explain :aws.ec2.Tags.TagList/Tag
