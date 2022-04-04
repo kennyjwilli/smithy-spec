@@ -46,8 +46,4 @@ And the content of `test.clj`...
 
 (s/def :kwill.smithy-spec.write/foo int?)
 
-(ns test (:require [clojure.spec.alpha :as s]))
-
-(s/def :kwill.smithy-spec.write/foo int?)
-
 ```
