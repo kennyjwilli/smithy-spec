@@ -105,7 +105,9 @@
                                         `int?))]
 
               "string"
-              [`(s/def ~shape-spec-k string?)]
+              [`(s/def ~shape-spec-k ~(if-let [enum (shape "enum")]
+                                        (set enum)
+                                        `string?))]
 
               "timestamp"
               [`(s/def ~shape-spec-k inst?)])))]
