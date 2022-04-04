@@ -106,7 +106,7 @@
 
               "string"
               [`(s/def ~shape-spec-k ~(if-let [enum (shape "enum")]
-                                        (set enum)
+                                        (apply sorted-set enum)
                                         `string?))]
 
               "timestamp"
