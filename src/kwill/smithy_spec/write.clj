@@ -38,5 +38,5 @@
   (require '[kwill.smithy-spec.write :as smithy-spec.write])
   (smithy-spec.write/write-to-file!
     '[(clojure.spec.alpha/def :kwill.smithy-spec.write/foo clojure.core/int?)]
-    {::smithy-spec.write/ns-sym 'test
-     ::smithy-spec.write/file   "test.clj"}))
+    {::ns-sym 'test
+     ::file   "test.clj"}))
