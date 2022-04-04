@@ -116,6 +116,7 @@
 (defn- simplify-dag
   [specs]
   (let [spec->form (into {} (map (fn [[_ k :as s]] [k s])) specs)
+        spec->rank (into {} (map (fn [[[_ k] n]] [k n])) (map vector specs (range)))
         ;; any spec refs with 1 parent can be flattened.
         useless-refs (->> specs
                        (keep (fn [[_ k spec-form]]
@@ -131,8 +132,8 @@
             (dissoc useless-k)
             (assoc real-k `(s/def ~real-k ~(nth (get spec->form useless-k) 2)))))
         spec->form)
-      (vals)
-      (sort-by second))))
+      (sort-by (fn [[k]] (get spec->rank k)))
+      (vals))))
 
 (comment
   (simplify-dag
