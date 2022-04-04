@@ -97,8 +97,7 @@
               [`(s/def ~shape-spec-k ~(if (length-trait? shape)
                                         (let [args [(shape "min" Integer/MIN_VALUE)
                                                     (shape "max" Integer/MAX_VALUE)]]
-                                          `(s/int-in ~@args
-                                             :infinite? false :NaN? false))
+                                          `(s/int-in ~@args))
                                         `int?))]
 
               "string"
